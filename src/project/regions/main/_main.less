@@ -1,0 +1,40 @@
+.eaProject {
+    padding: 15px;
+    &-content {
+        display: inline-block;
+        box-sizing: border-box;
+        width: calc(~"60% - 36px");
+        padding-right: 36px;
+
+        &-actions {
+            text-align: right;
+            padding-bottom: 10px;
+        }
+    }
+
+    &-info {
+        display: inline-block;
+        width: 40%;
+        box-sizing: border-box;
+        vertical-align: top;
+
+        &-selected, &-checked {
+            font-size: 10px;
+            background-color: #efefef;
+            height: 300px;
+            overflow-y: scroll;
+        }
+    }
+
+    @media screen and (max-width: 650px) {
+        &-content {
+            width: 100%;
+            padding: 0;
+        }
+
+        &-info {
+            padding-top: 10px;
+            width: 100%;
+        }
+    }
+}
