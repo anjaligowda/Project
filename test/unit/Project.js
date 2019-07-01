@@ -6,7 +6,7 @@ define([
 
     describe('Project', function () {
 
-        it('Sample unit test', function () {
+        it('In Project unit test', function () {
             expect(2 + 2).to.equal(4);
         });
 

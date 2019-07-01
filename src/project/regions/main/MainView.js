@@ -25,8 +25,9 @@ define([
         getTableDiv: function () {
             return this.getElement().find('.eaProject-table');
         },
-
-
+        getClearTableBtn: function () {
+                    return this.getElement().find('.eaProject-clearTableButton');
+                },
     });
 
 });

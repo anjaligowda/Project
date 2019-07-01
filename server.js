@@ -16,6 +16,14 @@
                                 teamArea: 'UI SDK'
                            },{
                                 name: 'Team 5',
+                                numMembers: 5,
+                                teamArea: 'Configuration Management'
+                           },{
+                                name: 'Team 6',
+                                numMembers: 8,
+                                teamArea: 'Customer Support'
+                           },{
+                                name: 'Team 7',
                                 numMembers: 7,
                                 teamArea: 'Product Introduction'
                            }]
@@ -26,8 +34,8 @@ var numTeams=teams.length;
 for (i=0; i <numTeams; i++){
         var teamDetails= {name: teams[i].name, numMembers: teams[i].numMembers, teamArea: teams[i].teamArea};
         teamDetailsList.push(teamDetails);
-        console.log(teamDetailsList)
-        console.log(teamDetailsList.length)
+//        console.log(teamDetailsList[0])
+//        console.log(teamDetailsList.length)
 }
 
 
@@ -50,7 +58,7 @@ module.exports = function (app) {
 
     app.get("/teamNames", function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(JSON.stringify(teamDetailsList));
+        res.send(teamDetailsList);
     });
 //
 //    app.get("/teamDetails/:team", function (req, res){
