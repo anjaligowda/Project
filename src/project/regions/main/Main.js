@@ -7,8 +7,10 @@ define([
     'widgets/Button',
     'tablelib/Table',
     'tablelib/plugins/ColorBand',
+    '../../widgets/addwidget/AddWidget',
+     'container/api',
     'i18n!project/dictionary.json'
-], function (core, View, teamsService, SelectionList, InlineMessage, Button, Table,ColorBand, dictionary) {
+], function (core, View, teamsService, SelectionList, InlineMessage, Button, Table,ColorBand, AddWidget, container, dictionary) {
     'use strict';
 
     return core.Region.extend({
@@ -20,7 +22,6 @@ define([
 
         onStart: function () {
             this.initializeSelectionList();
-
 
         },
         initializeSelectionList: function () {
@@ -44,13 +45,7 @@ define([
                                         }
                                     })
                                 ],
-
                 data: [
-//                        {name: '', numMembers: '', teamArea: ''},
-//                        {name: '', numMembers: '', teamArea: '' },
-//                        {name: '', numMembers: '', teamArea: '' },
-//                        {name: '', numMembers: '', teamArea: '' },
-//                        {name: '', numMembers: '', teamArea: '' }
                     ],
                 columns: [
                     {title: 'Team Name', attribute: 'name', width: '100px'},
@@ -95,22 +90,32 @@ define([
                     }]
             });
 
-           this.table.attachTo(this.view.getTableDiv());
-           this.button.attachTo(this.view.getClearTableBtn());
-          //  this.button.getClearTableBtn().addEventHandler('click', this.clearInfo.bind(this));
+            this.table.attachTo(this.view.getTableDiv());
+            this.button.attachTo(this.view.getClearTableBtn());
             this.selectionList.attachTo(this.view.getListDiv());
             this.selectionList.addEventHandler('change', this.removeInlineMessage.bind(this));
             this.selectionList.addEventHandler('change', this.showTable.bind(this));
             this.selectionList.addEventHandler('change', this.enableButton.bind(this));
             this.button.addEventHandler('click', this.clearInfo.bind(this));
 
-           // this.selectionList.addEventHandler('change', this.showInfo.bind(this));
-
             //Populates SelectionList
              teamsService.getTeamNames(function(data) {
              this.selectionList.setItems(data);
              }.bind(this));
+
         },
+
+//
+//        addConfigScreen: function () {
+//                    alert("am heer")
+//                    if (this.addConfig === undefined) {
+//                        // the flyout does not destroy the widget,
+//                        // keep the instance and update it
+//                        this.addWidget = new AddWidget();
+//                        // listen to the add event and add the selected widget
+//                        this.addWidget.addEventHandler('add', onWidgetAdd, this);
+//                        this.addWidget.addEventHandler('cancel', hideFlyout.bind(this));
+//                    }
 
 
         removeInlineMessage:function(){
@@ -120,21 +125,18 @@ define([
                this.table.clear();
                this.button.disable();
         },
-                enableButton:function(){
-                       this.button.enable();
-                },
+        enableButton:function(){
+               this.button.enable();
+        },
 
-//         prepareData:function(data){
-//                           return data.map(function (item) {
-//                                 return {
-//                                     teamName: item.attributes.name,
-//                                     numMembers: item.attributes.numMembers,
-//                                     teamArea: item.attributes.teamArea
-//                                 };
-//                             });
-//                },
+        showTable:function(){
+          // this.table.clear();
+          // var teamData = {"name":"Team 1","numMembers":6,"teamArea":"Release Verification","selected":true,"index":0};
+           var teamData = JSON.stringify(this.selectionList.getSelected());
+           var parsedData = JSON.parse(teamData);
+           this.table.addRow(parsedData[0]);
 
-
+        }
 //        showInfo: function () {
 //                    //shows data array for selected Team
 //                    var teamData = JSON.stringify(this.selectionList.getSelected());
@@ -144,15 +146,6 @@ define([
 //                    this.view.getInfoSelectedDiv().setText(parsedData);
 //                },
 
-        showTable:function(){
-         //   this.table.clear();
-
-          // var teamData = {"name":"Team 1","numMembers":6,"teamArea":"Release Verification","selected":true,"index":0};
-           var teamData = JSON.stringify(this.selectionList.getSelected());
-           var parsedData = JSON.parse(teamData);
-           this.table.addRow(parsedData[0]);
-
-        }
     });
 
 });

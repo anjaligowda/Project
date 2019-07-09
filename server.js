@@ -36,46 +36,28 @@ for (i=0; i <numTeams; i++){
         teamDetailsList.push(teamDetails);
 //        console.log(teamDetailsList[0])
 //        console.log(teamDetailsList.length)
+
+console.log(teamDetailsList)
+var data;
+
 }
 
 
-//           for (var i = 1; i <= 2; i++) {
-//            //    var itemValue = 'item' + i,
-//                   var item = {name: 'Team Name ' + i};
-//             //       item = {name: 'Team Name ' + i, value: itemValue, selected: false};
-//
-//             //   colorMap[itemValue] = colorsRange[Math.min(colorsRange.length - 1, i - 1)];
-//                items.push(item);
-//                console.log(items)
-//            }
+
 
 module.exports = function (app) {
-//
-//    app.get("/teams", function (req, res) {
-//        res.set('Content-Type', 'application/json');
-//        res.send(JSON.stringify(data));
-//    });
 
     app.get("/teamNames", function (req, res) {
         res.set('Content-Type', 'application/json');
         res.send(teamDetailsList);
     });
-//
-//    app.get("/teamDetails/:team", function (req, res){
-//        res.set('Content-Type', 'application/json');
-//        var data = getTeamDetails(teams, req.params.team);
-//        res.send(JSON.stringify(data));
-//    });
 
-//    function getTeamDetails(teams, team) {
-//        var result;
-//        for (var i = 0; i < teams.length; i++) {
-//            if (teams[i].teamName === team) {
-//                result = teams[i];
-//            }
-//        }
-//        return result;
-//    }
+
+    app.post("/addTeam", function (req, res){
+        res.set('Content-Type', 'application/json');
+        res.send(data);
+    });
+
 
 
 };

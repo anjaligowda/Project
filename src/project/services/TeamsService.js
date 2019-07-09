@@ -33,9 +33,23 @@ define([
         });
     }
 
+    function addTeam(data, fn) {
+        net.ajax({
+            url: "/addTeam",
+            type: "POST",
+            contentType:"json",
+            dataType: "json",
+            data:JSON.stringify(data),
+            success: fn,
+            error:fn
+        });
+        console.log("In addTeam Method in TeamService.js")
+    }
+
     return {
 //        getTeams: getTeams,
         getTeamNames: getTeamNames,
-        getTeamDetails: getTeamDetails
+        getTeamDetails: getTeamDetails,
+        addTeam:addTeam
     };
 });

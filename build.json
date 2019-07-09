@@ -22,10 +22,11 @@
     "dependencies": {
         "jscore": "1.9.1",
         "widgets": "1.9.3",
-        "i18n": "2.5.2",
-        "container": "1.15.0",
-        "assets": "1.10.8",
         "layouts": "1.8.15",
-        "tablelib": "0.11.1"
+        "tablelib": "0.11.1",
+        "flyout": "0.1.9",
+        "container": "1.15.1",
+        "i18n": "3.0.0",
+        "assets": "1.10.9"
     }
 }
